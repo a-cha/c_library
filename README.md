@@ -1,7 +1,7 @@
-#libft
-#####_My first own library_
+# libft
+###### _My first own library_
 
-####Contains some rewritten functions from C POSIX library (C99 standard)
+#### Contains some rewritten functions from C POSIX library (C99 standard)
 - ft_atof
 - ft_atoi
 - ft_bzero
@@ -46,10 +46,10 @@
 - ft_tolower
 - ft_toupper
 
-####Get Next Line 
+#### Get Next Line 
 Calling function in a loop allows to read the text available on a file descriptor one line at a time until the EOF.
 
-####And functions written in Assembly language
+#### And functions written in Assembly language
 - ft_read
 - ft_strcmp
 - ft_strcpy
