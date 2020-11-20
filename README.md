@@ -1,7 +1,7 @@
 # libft
 ###### _My first own library_
 
-#### Contains some rewritten functions from C POSIX library (C99 standard)
+#### Contains some rewritten functions from GNU C Library (C99 standard)
 - ft_atof
 - ft_atoi
 - ft_bzero
@@ -11,7 +11,6 @@
 - ft_isascii
 - ft_isdigit
 - ft_isprint
-- ft_itoa
 - ft_memccpy
 - ft_memchr
 - ft_memcmp
@@ -19,25 +18,28 @@
 - ft_memmove
 - ft_memset
 - ft_numlens
-- ft_putchar_fd
-- ft_putendl_fd
-- ft_putnbrs
-- ft_putstr_fd
-- ft_split
 - ft_strchr
-- ft_strjoin
 - ft_strlcat
 - ft_strlcpy
-- ft_strmapi
 - ft_strncmp
 - ft_strnstr
 - ft_strrchr
-- ft_strtrim
-- ft_substr
 - ft_tolower
 - ft_toupper
 
 #### + additional functions
+- ft_itoa
+- ft_putchar_fd
+- ft_putendl_fd
+- ft_putnbrs_fd
+- ft_putstr_fd
+- ft_split
+- ft_strjoin
+- ft_substr
+- ft_strmapi
+- ft_strtrim
+
+#### Functions that work with lists
 - ft_lstadd_back
 - ft_lstadd_front
 - ft_lstclear
