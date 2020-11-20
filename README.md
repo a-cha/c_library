@@ -12,15 +12,6 @@
 - ft_isdigit
 - ft_isprint
 - ft_itoa
-- ft_lstadd_back
-- ft_lstadd_front
-- ft_lstclear
-- ft_lstdelone
-- ft_lstiter
-- ft_lstlast
-- ft_lstmap
-- ft_lstnew
-- ft_lstsize
 - ft_memccpy
 - ft_memchr
 - ft_memcmp
@@ -45,6 +36,17 @@
 - ft_substr
 - ft_tolower
 - ft_toupper
+
+#### + additional functions
+- ft_lstadd_back
+- ft_lstadd_front
+- ft_lstclear
+- ft_lstdelone
+- ft_lstiter
+- ft_lstlast
+- ft_lstmap
+- ft_lstnew
+- ft_lstsize
 
 #### Get Next Line 
 Calling function in a loop allows to read the text available on a file descriptor one line at a time until the EOF
