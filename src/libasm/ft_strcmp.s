@@ -12,7 +12,7 @@ _ft_strcmp:
 loop:
 	inc		rcx
 	cmp		byte [rdi + rcx], 0
-	jne		return
+	je		return
 	mov		al, byte [rdi + rcx]
 	cmp		al, byte [rsi + rcx]
 	je		loop
