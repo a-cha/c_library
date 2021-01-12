@@ -22,7 +22,7 @@ int		ft_numlen(int n, int base)
 
 	i = 1;
 	if (n < 0)
-		n++;
+		i++;
 	while (n /= base)
 		i++;
 	return (i);
