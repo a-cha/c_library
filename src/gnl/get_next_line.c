@@ -34,7 +34,7 @@ static int	renew_params(char **remain, char *buf, char **line, char flag)
 		if (!(*line = ft_strjoin_pro(line, *choice)))
 			return (-1);
 		if (!(*remain = ft_substr_pro(choice,
-				ft_strlen(*choice) + 1, BUFFER_SIZE, flag)))
+				ft_strlen_here(*choice) + 1, BUFFER_SIZE, flag)))
 			return (-1);
 		return (1);
 	}

@@ -22,11 +22,12 @@ GNL_DIR := $(SRC_DIR)gnl/
 ASM_DIR := $(SRC_DIR)libasm/
 
 INC_DIR := ./includes/
-INC_ASM := $(INC_DIR)libasm.h
+INC_ASM := $(ASM_DIR)includes/libasm.h
 INC_LIBFT := $(INC_DIR)libft.h $(INC_ASM)
-INC_GNL := $(INC_DIR)get_next_line.h
-LINK_INC := -I $(INC_DIR)
+INC_GNL := $(GNL_DIR)get_next_line.h
+#LINK_INC := -I $(INC_DIR)
 
+LINK_INC := $(addprefix -I, $(INC_DIR) $(ASM_DIR)includes $(GNL_DIR))
 # Sources
 NAME := libft.a
 SRC :=				\

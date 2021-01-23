@@ -15,7 +15,6 @@
 
 # include <stdlib.h>
 # include <unistd.h>
-# include "libasm.h"
 
 /*
 ** ************************          PART I          ************************ **
@@ -63,11 +62,14 @@ char				*ft_substr(char const *s, unsigned int start, size_t len);
 /*
 ** ************************        BONUS PART        ************************ **
 */
+# ifndef T_LIST
+#  define T_LIST
 typedef struct		s_list
 {
-	void			*content;
+	void			*data;
 	struct s_list	*next;
 }					t_list;
+# endif
 
 void				ft_lstadd_back(t_list **lst, t_list *new);
 void				ft_lstadd_front(t_list **lst, t_list *new);

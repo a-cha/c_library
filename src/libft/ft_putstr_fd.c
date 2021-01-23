@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "libft.h"
+#include "libasm.h"
 
 void	ft_putstr_fd(char *s, int fd)
 {

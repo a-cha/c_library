@@ -19,6 +19,16 @@ int		free_buf(char **buf, int ret)
 	return (ret);
 }
 
+int 	ft_strlen_here(const char *s)
+{
+	int i;
+
+	i = 0;
+	while (*s++)
+		i++;
+	return (i);
+}
+
 char	*ft_strjoin_pro(char **s1, const char *s2)
 {
 	char	*res;
@@ -27,10 +37,10 @@ char	*ft_strjoin_pro(char **s1, const char *s2)
 	i = 0;
 	if (!(**s1))
 	{
-		if (!(res = (char *)malloc((ft_strlen(s2) + 1))))
+		if (!(res = (char *)malloc((ft_strlen_here(s2) + 1))))
 			return (NULL);
 	}
-	else if (!(res = (char *)malloc((ft_strlen(*s1) + ft_strlen(s2) + 1))))
+	else if (!(res = (char *)malloc((ft_strlen_here(*s1) + ft_strlen_here(s2) + 1))))
 		return (NULL);
 	else
 	{
@@ -53,7 +63,7 @@ char	*ft_substr_pro(char **s, unsigned int start, size_t len, char flag)
 	size_t	i;
 	char	*res;
 
-	l = ft_strlen(*s + start);
+	l = ft_strlen_here(*s + start);
 	l = l > len ? len : l;
 	if ((res = (char *)malloc((l + 1) * sizeof(char))))
 	{

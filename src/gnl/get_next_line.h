@@ -25,5 +25,6 @@ int		get_next_line(int fd, char **line);
 int		free_buf(char **buf, int ret);
 char	*ft_strjoin_pro(char **s1, const char *s2);
 char	*ft_substr_pro(char **s, unsigned int start, size_t len, char flag);
+int 	ft_strlen_here(const char *s);
 
 #endif
