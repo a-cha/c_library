@@ -12,9 +12,7 @@
 
 # Compile
 CC := gcc
-CC_ASM := nasm
 FLAGS := -Wall -Wextra -Werror
-FLAGS_ASM := -f macho64
 
 # Directories
 SRC_DIR := ./src/
@@ -82,27 +80,33 @@ SRC_GNL :=			\
 get_next_line.c		\
 get_next_line_utils.c
 
-SRC_ASM :=			\
-ft_read.s			\
-ft_strcmp.s			\
-ft_strcpy.s			\
-ft_strdup.s			\
-ft_strlen.s			\
-ft_write.s
+ASM_NAME := libasm.a
 
 # Objects
 OBJ_LIBFT := ${SRC:.c=.o}
 OBJ_GNL := ${SRC_GNL:.c=.o}
-OBJ_ASM := ${SRC_ASM:.s=.o}
-O_WITH_DIR := $(addprefix $(OBJ_DIR), $(OBJ_LIBFT) $(OBJ_GNL) $(OBJ_ASM))
+O_WITH_DIR := $(addprefix $(OBJ_DIR), $(OBJ_LIBFT) $(OBJ_GNL))
+
+# Colors
+BOLD=\033[1m
+GREEN=\033[32m
+RED=\033[31m
+BLUE=\033[36m
+STD=\033[0m
 
 
-all: $(NAME)
+all: $(ASM_DIR)$(ASM_NAME) $(NAME)
 
 $(NAME): $(O_WITH_DIR)
-	ar rc $(NAME) $(O_WITH_DIR)
+	ar rc $(NAME) $?
 	ranlib $(NAME)
-	@echo "\033[32m$(NAME) successfully created\033[0m" ✅
+	@echo "$(BOLD)Library file $(BLUE)$(NAME) $(STD)$(BOLD)$(GREEN)created$(STD)"
+
+# + Assembler functions
+$(ASM_DIR)$(ASM_NAME):
+	make -C $(ASM_DIR)
+	cp $(ASM_DIR)$(ASM_NAME) ./
+	mv $(ASM_NAME) $(NAME)
 
 # Dependencies that allow recompile obj files from only changed source files
 $(OBJ_DIR)%.o: $(LIBFT_DIR)%.c $(INC_LIBFT)
@@ -113,15 +117,14 @@ $(OBJ_DIR)%.o: $(LIBFT_DIR)%.c $(INC_LIBFT)
 $(OBJ_DIR)%.o: $(GNL_DIR)%.c $(INC_GNL)
 	$(CC) $(FLAGS) $(LINK_INC) -c $< -o $@
 
-# + Assembler functions
-$(OBJ_DIR)%.o: $(ASM_DIR)%.s $(INC_ASM)
-	$(CC_ASM) $(FLAGS_ASM) $(LINK_INC) -s $< -o $@
-
 # Standard rules
 clean:
 	rm -rf $(OBJ_DIR)
+	make -C $(ASM_DIR) clean
 fclean: clean
 	rm -f $(NAME)
+	make -C $(ASM_DIR) fclean
+	@echo "$(BOLD)Library $(BLUE)$(NAME)$(RED) deleted$(STD)"
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re asm_lib
