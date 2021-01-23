@@ -1,13 +1,19 @@
-; args order: rdi, rsi, rdx, rcx
 ; void	ft_list_remove_if(t_list **begin_list, void *data_ref, int (*cmp)());
 
-extern _free
+; Removes a node of the list containing the same data as data_ref.
+;
+; Received arguments:
+; t_list **begin_list - pointer to the first element of the chain list.
+; void *data_ref - pointer to reference data, using for comparison.
+; int (*cmp)() - pointer to function, whitch compares node's data with data_ref.
+
 
 section		.text
+extern _free
 global		_ft_list_remove_if
 
 _ft_list_remove_if:
-; chech if first elem should remove (and remove it)
+; check if first elem should remove (and remove it)
 is_first:
 	push	rdi
 	mov		rdi, [rdi]			; rdi = *begin_list
@@ -23,10 +29,19 @@ is_first:
 	mov		rcx, [rdi]			; rcx = *begin_list
 	mov		r10, [rcx + 8]		; r10 = begin_list->next
 	mov		[rdi], r10			; *begin_list = begin_list->next
-; NEED TO FREE RCX HERE
+	push	rdi					; save all registers
+	push	rsi
+	push	rdx
+	push	rcx
+	mov		rdi, rcx
+	call	_free				; free node
+	pop		rcx
+	pop		rdx
+	pop		rsi
+	pop		rdi
 	jmp		is_first
 
-; chech if other elements should remove
+; check if other elements should remove
 is_further:
 	mov		rdi, [rdi]			; rdi = *begin_list
 
@@ -51,7 +66,16 @@ loop:
 remove_elem:
 	mov		r10, [rcx + 8]		; r10 = begin_list->next->next
 	mov		[rdi + 8], r10		; begin_list->next = begin_list->next->next
-; NEED TO FREE RCX HERE
+	push	rdi					; save all registers
+	push	rsi
+	push	rdx
+	push	rcx
+	mov		rdi, rcx
+	call	_free				; free node
+	pop		rcx
+	pop		rdx
+	pop		rsi
+	pop		rdi
 	jmp		loop
 
 clean_stack:

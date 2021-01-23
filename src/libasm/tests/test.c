@@ -1,8 +1,28 @@
-#include "includes/libasm.h"
+#include "../includes/libasm.h"
 #include <stdio.h>
 #include <fcntl.h>
 #include <string.h>
 #include <sys/errno.h>
+
+void 	print_list(t_list *lst)
+{
+	while (lst)
+	{
+		if ((char *)lst->data)
+			printf("%s\n", (char *)lst->data);
+		lst = lst->next;
+	}
+}
+
+int 	cmp(t_list *l1, t_list *l2)
+{
+	char 	*s1;
+	char 	*s2;
+
+	s1 = l1->data;
+	s2 = l2->data;
+	return (ft_strcmp(s1, s2));
+}
 
 int		main(void)
 {
@@ -11,6 +31,7 @@ int		main(void)
 	char *big2016 = "Hello sldfnovishfiunsid fnvsf nobingsibnsi bindf inpginfdspnbvpi dsnfibnosd igjg[qoime[woifnvinsdpbinpiuwhpiwenpvjnwnvs nHello sldfnovishfiunsid fnvsf nobingsibnsi bindf inpginfdspnbvpi dsnfibnosd igjg[qoime[woifnvinsdpbinpiuwhpiwenpvjnwnvs nHello sldfnovishfiunsid fnvsf nobingsibnsi bindf inpginfdspnbvpi dsnfibnosd igjg[qoime[woifnvinsdpbinpiuwhpiwenpvjnwnvs nHello sldfnovishfiunsid fnvsf nobingsibnsi bindf inpginfdspnbvpi dsnfibnosd igjg[qoime[woifnvinsdpbinpiuwhpiwenpvjnwnvs nHello sldfnovishfiunsid fnvsf nobingsibnsi bindf inpginfdspnbvpi dsnfibnosd igjg[qoime[woifnvinsdpbinpiuwhpiwenpvjnwnvs nHello sldfnovishfiunsid fnvsf nobingsibnsi bindf inpginfdspnbvpi dsnfibnosd igjg[qoime[woifnvinsdpbinpiuwhpiwenpvjnwnvs nHello sldfnovishfiunsid fnvsf nobingsibnsi bindf inpginfdspnbvpi dsnfibnosd igjg[qoime[woifnvinsdpbinpiuwhpiwenpvjnwnvs nHello sldfnovishfiunsid fnvsf nobingsibnsi bindf inpginfdspnbvpi dsnfibnosd igjg[qoime[woifnvinsdpbinpiuwhpiwenpvjnwnvs nHello sldfnovishfiunsid fnvsf nobingsibnsi bindf inpginfdspnbvpi dsnfibnosd igjg[qoime[woifnvinsdpbinpiuwhpiwenpvjnwnvs nHello sldfnovishfiunsid fnvsf nobingsibnsi bindf inpginfdspnbvpi dsnfibnosd igjg[qoime[woifnvinsdpbinpiuwhpiwenpvjnwnvs nHello sldfnovishfiunsid fnvsf nobingsibnsi bindf inpginfdspnbvpi dsnfibnosd igjg[qoime[woifnvinsdpbinpiuwhpiwenpvjnwnvs nHello sldfnovishfiunsid fnvsf nobingsibnsi bindf inpginfdspnbvpi dsnfibnosd igjg[qoime[woifnvinsdpbinpiuwhpiwenpvjnwnvs nHello sldfnovishfiunsid fnvsf nobingsibnsi bindf inpginfdspnbvpi dsnfibnosd igjg[qoime[woifnvinsdpbinpiuwhpiwenpvjnwnvs nHello sldfnovishfiunsid fnvsf nobingsibnsi bindf inpginfdspnbvpi dsnfibnosd igjg[qoime[woifnvinsdpbinpiuwhpiwenpvjnwnvs nHello sldfnovishfiunsid fnvsf nobingsibnsi bindf inpginfdspnbvpi dsnfibnosd igjg[qoime[woifnvinsdpbinpiuwhpiwenpvjnwnvs nHello sldfnovishfiunsid fnvsf nobingsibnsi bindf inpginfdspnbvpi dsnfibnosd igjg[qoime[woifnvinsdpbinpiuwhpiwenpvjnwnvs nHello sldfnovishfiunsid fnvsf nobingsibnsi bindf inpginfdspnbvpi dsnfibnosd igjg";
 	char *dst;
 	int fd;
+	t_list	*one;
 
 	printf("\n=====  TEST STRLEN  =====\n");
 	printf("\nSmall\n");
@@ -24,7 +45,7 @@ int		main(void)
 	printf("Std:\t%zu\n", strlen(""));
 
 	printf("\n\n=====  TEST READ  =====\n");
-	fd = open("test", O_RDWR);
+	fd = open("tests/test_read_write", O_RDWR);
 	dst = malloc(6);
 	dst[5] = 0;
 	printf("\nStdin\n");
@@ -56,12 +77,9 @@ int		main(void)
 	dst = malloc(6);
 	dst[5] = 0;
 	printf("Std:\treturn: %ld\tbuf: %s\terrno: %d\n", read(fd, dst, 5), dst, errno);
-	close(fd);
 
-/*
 	printf("\n\n=====  TEST WRITE  =====\n");
 	sleep(1);
-	fd = open("test", O_RDWR);
 	printf("\nStdout\n");
 	printf("My:\treturn: %ld\n", ft_write(1, smalln, ft_strlen(smalln)));
 	printf("Std:\treturn: %ld\n", write(1, smalln, ft_strlen(smalln)));
@@ -72,7 +90,6 @@ int		main(void)
 	printf("My:\treturn: %ld\terrno: %d\n", ft_write(fd, small, ft_strlen(small)), errno);
 	printf("Std:\treturn: %ld\terrno: %d\n", write(fd, small, ft_strlen(small)), errno);
 	close(fd);
-*/
 
 	printf("\n\n===== TEST STRCMP =====\n");
 	printf("\nEqual\n");
@@ -131,6 +148,52 @@ int		main(void)
 	printf("My len:\t%zu\n", ft_strlen(small));
 	printf("Std:\t%s\n", (small = strdup("")));
 	printf("Std len:%ld\n", strlen(small));
+
+	printf("\n\n==========================\n");
+	printf("======  TEST BONUS  ======\n");
+	printf("==========================\n");
+
+	printf("\n====  TEST ATOI_BASE  ====\n");
+	printf("%s = %d\n", "1111011 b2", ft_atoi_base("1111011", "01"));
+	printf("%s = %d\n", "11120 b3", ft_atoi_base("11120", "012"));
+	printf("%s = %d\n", "173 b8", ft_atoi_base("173", "01234567"));
+	printf("%s = %d\n", "-173 b8", ft_atoi_base("-173", "01234567"));
+	printf("%s = %d\n", "123 b10", ft_atoi_base("123", "0123456789"));
+	printf("%s = %d\n", "-123 b10", ft_atoi_base("-123", "0123456789"));
+	printf("%s = %d\n", "7B b16", ft_atoi_base("7B", "0123456789ABCDEF"));
+	printf("%s = %d\n", "7b b16", ft_atoi_base("7b", "0123456789abcdef"));
+	printf("invalid base: %d\n", ft_atoi_base("123", "0123456a789"));
+
+	printf("\n\n======  TEST LISTS  ======\n");
+	printf("push front:\n");
+	one = malloc(0);
+	one = NULL;
+	ft_list_push_front(&one, "-");
+	ft_list_push_front(&one, "0");
+	ft_list_push_front(&one, "-");
+	ft_list_push_front(&one, "-");
+	ft_list_push_front(&one, "-");
+	ft_list_push_front(&one, "-");
+	ft_list_push_front(&one, "1");
+	ft_list_push_front(&one, "2");
+	ft_list_push_front(&one, "-");
+	ft_list_push_front(&one, "-");
+	ft_list_push_front(&one, "4");
+	ft_list_push_front(&one, "-");
+	ft_list_push_front(&one, "-");
+	ft_list_push_front(&one, "3");
+	ft_list_push_front(&one, "-");
+	ft_list_push_front(&one, "-");
+	print_list(one);
+	printf("\nsize: %d\n", ft_list_size(one));
+	ft_list_remove_if(&one, "-", &ft_strcmp);
+	printf("\nremove_if:\n");
+	print_list(one);
+	printf("\nsize: %d\n", ft_list_size(one));
+	ft_list_sort(&one, &cmp);
+	printf("\nsort:\n");
+	print_list(one);
+	printf("\nempty lst size: %d\n", ft_list_size(NULL));
 
 	return(0);
 }

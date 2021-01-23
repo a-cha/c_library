@@ -1,5 +1,12 @@
-; args order: rdi, rsi, rdx, rcx
 ; int	ft_list_size(t_list *begin_list);
+
+; Mesaures the length of the list.
+;
+; Received arguments:
+; t_list **begin_list - pointer to the first element of the chain list.
+; Return value:
+; Size of the list, int.
+
 
 section		.text
 global		_ft_list_size

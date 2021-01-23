@@ -6,7 +6,7 @@
 /*   By: sadolph <sadolph@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/20 12:36:10 by sadolph           #+#    #+#             */
-/*   Updated: 2020/12/13 22:43:25 by sadolph          ###   ########.fr       */
+/*   Updated: 2021/01/14 20:53:14 by sadolph          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,9 @@ typedef struct		s_list
 }					t_list;
 
 int 				ft_atoi_base(char *str, char *base);
-t_list				*ft_lstnew(void *content);
 void				ft_list_push_front(t_list **begin_list, void *data);
 int					ft_list_size(t_list *begin_list);
 void				ft_list_remove_if(t_list **begin_list, void *data_ref, int (*cmp)());
-t_list *ft_list_sort(t_list **begin_list, int (*cmp)());
+void				ft_list_sort(t_list **begin_list, int (*cmp)());
 
 # endif

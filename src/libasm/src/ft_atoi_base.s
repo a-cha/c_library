@@ -1,5 +1,15 @@
-; args order: rdi, rsi, rdx, rcx
 ; int	ft_atoi_base(char *str, char *base);
+
+; Converts the number from the specified number system
+; to decimal and returns the result.
+;
+; Received arguments:
+; char *str - the number specified in the number system.
+; char *base - number system represented by a string. For example:
+; "01" - binary, "0123456789ABCDE" - hexadecimal
+; Return value:
+; Number, converted to int.
+
 
 extern _ft_strlen
 
@@ -117,7 +127,7 @@ sign_minus:
 ; main loop
 ; the next registers are occupied now:
 ; rax - return value
-; rdi - str
+; rdi - pointer to str
 ; rsi - base (char *)
 ; r10 - base (int)
 ; rcx - sign

@@ -1,5 +1,11 @@
-; args order: rdi, rsi, rdx, rcx
 ; void	ft_list_sort(t_list **begin_list, int (*cmp)());
+
+; Sorts the received list.
+;
+; Received arguments:
+; t_list **begin_list - pointer to the first element of the chain list.
+; int (*cmp)() - pointer to function, whitch compares data of two nodes.
+
 
 section		.text
 global		_ft_list_sort
@@ -28,16 +34,9 @@ again:
 ;	push	rdx
 	mov		rsi, [rdi + 8]		; pointer to 2nd elem
 	mov		r9, 0
-call loop
-;	call loop
-;pop rdx
-;mov rax, rdi
-;ret
+	call loop
 
 again1:
-;	pop		rdx					; pointer to pointer to 1st elem
-;mov rax, [rdx]
-;ret
 	cmp		r9, 0				; flag == 0 - there are no changes, exit
 	je		return
 	mov		rdi, [rdx]			; pointer to 1st elem
